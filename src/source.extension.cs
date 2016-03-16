@@ -7,6 +7,6 @@ namespace CommentRemover
 		public const string Description = "Remove all comments in any file with a click of a button";
 		public const string Version = "1.0";
 		public const string Author = "Mads Kristensen";
-		public const string Tags = "";
+		public const string Tags = "comment, cleanup, delete";
 	}
 }

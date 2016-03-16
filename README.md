@@ -2,8 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/53r98dh884p6bg4r?svg=true)](https://ci.appveyor.com/project/madskristensen/commentremover)
 
-<!-- Update the VS Gallery link after you upload the VSIX-->
-Download this extension from the [VS Gallery](https://visualstudiogallery.msdn.microsoft.com/[GuidFromGallery])
+Download this extension from the [VS Gallery](https://visualstudiogallery.msdn.microsoft.com/845a87b1-3bd7-43a4-871d-0458d9fce206)
 or get the [CI build](http://vsixgallery.com/extension/d7c3f904-cc5a-4d47-aa25-81fb7c36df89/).
 
 ---------------------------------------
@@ -47,7 +46,7 @@ After:
 }
 ```
 
-### C#
+### CSharp
 Before:
 ```c#
 /// <summary>
@@ -90,7 +89,7 @@ public class Class1
 ```
 
 ## Contribute
-Check out the [contribution guidelines](CONTRIBUTING.md)
+Check out the [contribution guidelines](.github/CONTRIBUTING.md)
 if you want to contribute to this project.
 
 For cloning and building this project yourself, make sure

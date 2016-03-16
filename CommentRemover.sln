@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentRemover", "CommentRemover\CommentRemover.csproj", "{54B4B640-D71B-493D-80CF-DD37B17F1E75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentRemover", "src\CommentRemover.csproj", "{54B4B640-D71B-493D-80CF-DD37B17F1E75}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{21DFC4C7-A50F-4129-ABFD-841CC37A0848}"
 	ProjectSection(SolutionItems) = preProject
