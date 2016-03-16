@@ -1,56 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
-using Microsoft.VisualStudio.Text.Tagging;
 
 namespace CommentRemover
 {
-    internal sealed class RemoveCommentCommand
+    internal sealed class RemoveAllCommentsCommand : BaseCommand<RemoveAllCommentsCommand>
     {
-        private readonly Package _package;
-
-        private RemoveCommentCommand(Package package)
-        {
-            _package = package;
-
-            OleMenuCommandService commandService = ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
-            if (commandService != null)
-            {
-                var menuCommandID = new CommandID(PackageGuids.guidPackageCmdSet, PackageIds.RemoveComment);
-                var menuItem = new MenuCommand(Execute, menuCommandID);
-                commandService.AddCommand(menuItem);
-            }
-        }
-
-        public static RemoveCommentCommand Instance { get; private set; }
-
-        private IServiceProvider ServiceProvider
-        {
-            get { return _package; }
-        }
+        public RemoveAllCommentsCommand(Package package)
+            : base(package, PackageGuids.guidPackageCmdSet, PackageIds.RemoveAllComments)
+        { }
 
         public static void Initialize(Package package)
         {
-            Instance = new RemoveCommentCommand(package);
+            Instance = new RemoveAllCommentsCommand(package);
         }
 
-        private void Execute(object sender, EventArgs e)
+        protected override void Execute(OleMenuCommand button)
         {
             var view = ProjectHelpers.GetCurentTextView();
-            var mappingSpans = GetClassificationSpans(view);
+            var mappingSpans = GetClassificationSpans(view, "comment");
 
             if (!mappingSpans.Any())
                 return;
 
             try
             {
-                VSPackage.DTE.UndoContext.Open("Remove comments");
+                VSPackage.DTE.UndoContext.Open(button.Text);
 
                 DeleteFromBuffer(view, mappingSpans);
                 AddTelemetry(mappingSpans);
@@ -142,34 +122,6 @@ namespace CommentRemover
 
                 edit.Apply();
             }
-        }
-
-        private static bool IsLineEmpty(ITextSnapshotLine line)
-        {
-            var text = line.GetText().Trim();
-
-            return (string.IsNullOrWhiteSpace(text)
-                   || text == "<!--"
-                   || text == "-->"
-                   || text == "<%%>"
-                   || text == "<%"
-                   || text == "%>"
-                   || Regex.IsMatch(text, @"<!--(\s+)?-->"));
-        }
-
-        private static IEnumerable<IMappingSpan> GetClassificationSpans(IWpfTextView view)
-        {
-            if (view == null)
-                return Enumerable.Empty<IMappingSpan>();
-
-            var componentModel = ProjectHelpers.GetComponentModel();
-            var service = componentModel.GetService<IBufferTagAggregatorFactoryService>();
-            var classifier = service.CreateTagAggregator<IClassificationTag>(view.TextBuffer);
-            var snapshot = new SnapshotSpan(view.TextBuffer.CurrentSnapshot, 0, view.TextBuffer.CurrentSnapshot.Length);
-
-            return from s in classifier.GetTags(snapshot).Reverse()
-                   where s.Tag.ClassificationType.Classification.IndexOf("comment", StringComparison.OrdinalIgnoreCase) > -1
-                   select s.Span;
         }
     }
 }

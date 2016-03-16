@@ -1,6 +1,10 @@
 # Roadmap
 
-- [ ] Option to delete only specific types of comments
+- [x] Option to delete only specific types of comments
+  - [x] Regions
+  - [x] XML doc comments
+  - [x] Everything but XML doc comments
+- [x] Add commands to their own menu
 
 Features that have a checkmark are complete and available for
 download in the

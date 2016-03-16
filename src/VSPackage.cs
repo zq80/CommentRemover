@@ -21,7 +21,10 @@ namespace CommentRemover
             Logger.Initialize(this, Vsix.Name);
             Telemetry.Initialize(this, Vsix.Version, "4f961700-5d74-4a99-b346-571e5c82cb9b");
 
-            RemoveCommentCommand.Initialize(this);
+            RemoveAllCommentsCommand.Initialize(this);
+            RemoveRegionsCommand.Initialize(this);
+            RemoveXmlDocComments.Initialize(this);
+            RemoveAllExceptXmlDocComments.Initialize(this);
 
             base.Initialize();
         }

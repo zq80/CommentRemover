@@ -6,32 +6,64 @@
     <Include href="KnownImageIds.vsct"/>
 
     <Commands package="guidPackage">
+        <Menus>
+            <Menu guid="guidPackageCmdSet" id="MyMenu" priority="0x0200" type="Menu">
+                <Parent guid="guidSHLMainMenu" id="IDG_VS_EDIT_COMMANDWELL" />
+                <Strings>
+                    <ButtonText>Comments</ButtonText>
+                </Strings>
+            </Menu>
+        </Menus>
         <Groups>
             <Group guid="guidPackageCmdSet" id="MyMenuGroup" priority="0x0500">
-                <Parent guid="guidAdvanced" id="EDIT_ADVANCED"/>
+                <Parent guid="guidPackageCmdSet" id="MyMenu"/>
             </Group>
         </Groups>
 
         <Buttons>
-            <Button guid="guidPackageCmdSet" id="RemoveComment" priority="0x0100" type="Button">
+            <Button guid="guidPackageCmdSet" id="RemoveAllComments" priority="0x0100" type="Button">
                 <Parent guid="guidPackageCmdSet" id="MyMenuGroup" />
                 <Icon guid="ImageCatalogGuid" id="Uncomment" />
                 <CommandFlag>IconIsMoniker</CommandFlag>
                 <CommandFlag>DynamicVisibility</CommandFlag>
                 <Strings>
-                    <ButtonText>Remove Comments</ButtonText>
+                    <ButtonText>Remove All</ButtonText>
+                </Strings>
+            </Button>
+
+            <Button guid="guidPackageCmdSet" id="RemoveXmlDocComments" priority="0x0100" type="Button">
+                <Parent guid="guidPackageCmdSet" id="MyMenuGroup" />
+                <CommandFlag>DynamicVisibility</CommandFlag>
+                <Strings>
+                    <ButtonText>Remove XML Docs</ButtonText>
+                </Strings>
+            </Button>
+
+            <Button guid="guidPackageCmdSet" id="RemoveAllExceptXmlDocComments" priority="0x0100" type="Button">
+                <Parent guid="guidPackageCmdSet" id="MyMenuGroup" />
+                <CommandFlag>DynamicVisibility</CommandFlag>
+                <Strings>
+                    <ButtonText>Remove All Except XML Docs</ButtonText>
+                </Strings>
+            </Button>
+
+            <Button guid="guidPackageCmdSet" id="RemoveRegions" priority="0x0100" type="Button">
+                <Parent guid="guidPackageCmdSet" id="MyMenuGroup" />
+                <CommandFlag>DynamicVisibility</CommandFlag>
+                <Strings>
+                    <ButtonText>Remove Regions</ButtonText>
                 </Strings>
             </Button>
         </Buttons>
     </Commands>
 
     <VisibilityConstraints>
-        <VisibilityItem guid="guidPackageCmdSet" id="RemoveComment" context="UICONTEXT_SolutionExists">
-        </VisibilityItem>
+        <VisibilityItem guid="guidPackageCmdSet" id="RemoveAllComments" context="UICONTEXT_SolutionExists" />
+        <VisibilityItem guid="guidPackageCmdSet" id="RemoveRegions" context="UICONTEXT_SolutionExists" />
     </VisibilityConstraints>
 
     <KeyBindings>
-        <KeyBinding guid="guidPackageCmdSet" id="RemoveComment" mod1="Control" key1="K" mod2="Control" key2="Q" editor="guidVSStd97"/>
+        <KeyBinding guid="guidPackageCmdSet" id="RemoveAllComments" mod1="Control" key1="K" mod2="Control" key2="Q" editor="guidVSStd97"/>
     </KeyBindings>
 
     <Symbols>
@@ -40,12 +72,12 @@
 
         <!-- This is the guid used to group the menu commands together -->
         <GuidSymbol name="guidPackageCmdSet" value="{d7952971-879b-431d-b743-70ad7e99e846}">
+            <IDSymbol name="MyMenu" value="0x1000" />
             <IDSymbol name="MyMenuGroup" value="0x1020" />
-            <IDSymbol name="RemoveComment" value="0x0100" />
-        </GuidSymbol>
-
-        <GuidSymbol name="guidAdvanced" value="{9ADF33D0-8AAD-11D0-B606-00A0C922E851}">
-            <IDSymbol name="EDIT_ADVANCED" value="16032"/>
+            <IDSymbol name="RemoveAllComments" value="0x0100" />
+            <IDSymbol name="RemoveRegions" value="0x0200" />
+            <IDSymbol name="RemoveXmlDocComments" value="0x0300" />
+            <IDSymbol name="RemoveAllExceptXmlDocComments" value="0x0400" />
         </GuidSymbol>
     </Symbols>
 </CommandTable>
