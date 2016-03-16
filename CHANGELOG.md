@@ -1,10 +1,13 @@
 # Roadmap
 
-- [x] Option to delete only specific types of comments
-  - [x] Regions
-  - [x] XML doc comments
-  - [x] Everything but XML doc comments
-- [x] Add commands to their own menu
+- [ ] Test in more file types (help wanted)
+  - [ ] Razor files - _both .cshtml and .vbhtml_
+  - [ ] F# files
+  - [ ] PowerShell files
+  - [ ] SQL files
+  - [x] ASPX files
+  - [ ] XAML filesS
+  - ...and others
 
 Features that have a checkmark are complete and available for
 download in the
@@ -14,6 +17,17 @@ download in the
 
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
+
+## 1.1
+
+**2016-03-16**
+
+- [x] Option to delete only specific types of comments
+  - [x] Regions
+  - [x] XML doc comments
+  - [x] Everything but XML doc comments
+- [x] Add commands to their own menu
+- [ ] Moved menu down in the language info group
 
 ## 1.0
 
