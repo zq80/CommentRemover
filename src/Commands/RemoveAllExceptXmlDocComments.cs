@@ -32,6 +32,7 @@ namespace CommentRemover
                 VSPackage.DTE.UndoContext.Open(button.Text);
 
                 DeleteFromBuffer(view, mappingSpans);
+                AddTelemetry("Comments not XMLDoc removed");
             }
             catch (Exception ex)
             {

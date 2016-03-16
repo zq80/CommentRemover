@@ -57,6 +57,7 @@ namespace CommentRemover
                    where s.Tag.ClassificationType.Classification.IndexOf(classificationName, StringComparison.OrdinalIgnoreCase) > -1
                    select s.Span;
         }
+
         protected static bool IsLineEmpty(ITextSnapshotLine line)
         {
             var text = line.GetText().Trim();
@@ -70,5 +71,16 @@ namespace CommentRemover
                    || Regex.IsMatch(text, @"<!--(\s+)?-->"));
         }
 
+        protected static void AddTelemetry(string eventName)
+        {
+            var fileName = VSPackage.DTE.ActiveDocument?.FullName;
+            var ext = "<n/a>";
+
+            if (!string.IsNullOrEmpty(fileName))
+                ext = Path.GetExtension(fileName).ToLowerInvariant();
+
+            var props = new Dictionary<string, string> { { "extension", ext } };
+            Telemetry.TrackEvent(eventName, props);
+        }
     }
 }

@@ -56,7 +56,8 @@
                 <CommandFlag>IconIsMoniker</CommandFlag>
                 <CommandFlag>DynamicVisibility</CommandFlag>
                 <Strings>
-                    <ButtonText>Remove Regions</ButtonText>
+                    <LocCanonicalName>Remove Regions</LocCanonicalName>
+                    <ButtonText>Remove #Regions</ButtonText>
                 </Strings>
             </Button>
         </Buttons>

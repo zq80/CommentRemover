@@ -27,6 +27,7 @@ namespace CommentRemover
                 VSPackage.DTE.UndoContext.Open(button.Text);
 
                 RemoveRegionsFromBuffer(view);
+                AddTelemetry("Regions removed");
             }
             catch (Exception ex)
             {
