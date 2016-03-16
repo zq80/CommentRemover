@@ -28,7 +28,8 @@ Here are some examples of before and after the comments have
 been removed
 
 ### JSON
-Before:
+
+**Before**:
 ```json
 {
 	// Single-line comment
@@ -43,7 +44,7 @@ Before:
 }
 ```
 
-After:
+**After**:
 ```json
 {
 	"foo": {
@@ -53,7 +54,8 @@ After:
 ```
 
 ### CSharp
-Before:
+
+**Before**:
 ```c#
 /// <summary>
 /// Foo bar
@@ -76,7 +78,7 @@ public class Class1
 }
 ```
 
-After:
+**After**:
 ```c#
 public class Class1
 {
