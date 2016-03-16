@@ -1,7 +1,6 @@
 # Comment Remover
 
-<!-- Replace this badge with your own-->
-[![Build status](https://ci.appveyor.com/api/projects/status/hv6uyc059rqbc6fj?svg=true)](https://ci.appveyor.com/project/madskristensen/extensibilitytools)
+[![Build status](https://ci.appveyor.com/api/projects/status/53r98dh884p6bg4r?svg=true)](https://ci.appveyor.com/project/madskristensen/commentremover)
 
 <!-- Update the VS Gallery link after you upload the VSIX-->
 Download this extension from the [VS Gallery](https://visualstudiogallery.msdn.microsoft.com/[GuidFromGallery])
