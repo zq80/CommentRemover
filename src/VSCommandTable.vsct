@@ -27,6 +27,7 @@
                 <CommandFlag>IconIsMoniker</CommandFlag>
                 <CommandFlag>DynamicVisibility</CommandFlag>
                 <Strings>
+                    <LocCanonicalName>Remove All Comments</LocCanonicalName>
                     <ButtonText>Remove All</ButtonText>
                 </Strings>
             </Button>
@@ -35,6 +36,7 @@
                 <Parent guid="guidPackageCmdSet" id="MyMenuGroup" />
                 <CommandFlag>DynamicVisibility</CommandFlag>
                 <Strings>
+                    <LocCanonicalName>Remove XML Doc Comments</LocCanonicalName>
                     <ButtonText>Remove XML Docs</ButtonText>
                 </Strings>
             </Button>
@@ -43,6 +45,7 @@
                 <Parent guid="guidPackageCmdSet" id="MyMenuGroup" />
                 <CommandFlag>DynamicVisibility</CommandFlag>
                 <Strings>
+                    <LocCanonicalName>Remove All Except XML Doc Comments</LocCanonicalName>
                     <ButtonText>Remove All Except XML Docs</ButtonText>
                 </Strings>
             </Button>
