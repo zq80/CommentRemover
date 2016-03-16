@@ -7,8 +7,8 @@
 
     <Commands package="guidPackage">
         <Menus>
-            <Menu guid="guidPackageCmdSet" id="MyMenu" priority="0x0200" type="Menu">
-                <Parent guid="guidSHLMainMenu" id="IDG_VS_EDIT_COMMANDWELL" />
+            <Menu guid="guidPackageCmdSet" id="MyMenu" priority="0xFF81" type="Menu">
+                <Parent guid="guidStdEditor" id="IDG_VS_EDITOR_LANGUAGE_INFO" />
                 <Strings>
                     <ButtonText>Comments</ButtonText>
                 </Strings>
@@ -31,7 +31,7 @@
                 </Strings>
             </Button>
 
-            <Button guid="guidPackageCmdSet" id="RemoveXmlDocComments" priority="0x0100" type="Button">
+            <Button guid="guidPackageCmdSet" id="RemoveXmlDocComments" priority="0x0200" type="Button">
                 <Parent guid="guidPackageCmdSet" id="MyMenuGroup" />
                 <CommandFlag>DynamicVisibility</CommandFlag>
                 <Strings>
@@ -39,7 +39,7 @@
                 </Strings>
             </Button>
 
-            <Button guid="guidPackageCmdSet" id="RemoveAllExceptXmlDocComments" priority="0x0100" type="Button">
+            <Button guid="guidPackageCmdSet" id="RemoveAllExceptXmlDocComments" priority="0x0300" type="Button">
                 <Parent guid="guidPackageCmdSet" id="MyMenuGroup" />
                 <CommandFlag>DynamicVisibility</CommandFlag>
                 <Strings>
@@ -47,8 +47,10 @@
                 </Strings>
             </Button>
 
-            <Button guid="guidPackageCmdSet" id="RemoveRegions" priority="0x0100" type="Button">
+            <Button guid="guidPackageCmdSet" id="RemoveRegions" priority="0x0400" type="Button">
                 <Parent guid="guidPackageCmdSet" id="MyMenuGroup" />
+                <Icon guid="ImageCatalogGuid" id="HideCommentGroup" />
+                <CommandFlag>IconIsMoniker</CommandFlag>
                 <CommandFlag>DynamicVisibility</CommandFlag>
                 <Strings>
                     <ButtonText>Remove Regions</ButtonText>
@@ -58,8 +60,10 @@
     </Commands>
 
     <VisibilityConstraints>
-        <VisibilityItem guid="guidPackageCmdSet" id="RemoveAllComments" context="UICONTEXT_SolutionExists" />
-        <VisibilityItem guid="guidPackageCmdSet" id="RemoveRegions" context="UICONTEXT_SolutionExists" />
+        <VisibilityItem guid="guidPackageCmdSet" id="RemoveAllComments" context="GUID_TextEditorFactory" />
+        <VisibilityItem guid="guidPackageCmdSet" id="RemoveRegions" context="GUID_TextEditorFactory" />
+        <VisibilityItem guid="guidPackageCmdSet" id="RemoveXmlDocComments" context="GUID_TextEditorFactory" />
+        <VisibilityItem guid="guidPackageCmdSet" id="RemoveAllExceptXmlDocComments" context="GUID_TextEditorFactory" />
     </VisibilityConstraints>
 
     <KeyBindings>
