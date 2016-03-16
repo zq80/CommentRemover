@@ -7,6 +7,6 @@ namespace CommentRemover
 		public const string Description = "Remove all comments in any file with a click of a button. Can also remove #regions and preserve XML Doc comments.";
 		public const string Version = "1.1";
 		public const string Author = "Mads Kristensen";
-		public const string Tags = "comment, cleanup, delete";
+		public const string Tags = "comment, cleanup, delete, region, XMLDoc";
 	}
 }

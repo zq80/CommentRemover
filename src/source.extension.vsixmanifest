@@ -9,7 +9,7 @@
         <ReleaseNotes>https://github.com/madskristensen/CommentRemover/blob/master/CHANGELOG.md</ReleaseNotes>
         <Icon>Resources\Icon.png</Icon>
         <PreviewImage>Resources\Preview.png</PreviewImage>
-        <Tags>comment, cleanup, delete</Tags>
+        <Tags>comment, cleanup, delete, region, XMLDoc</Tags>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />
