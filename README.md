@@ -8,6 +8,7 @@ or get the [CI build](http://vsixgallery.com/extension/d7c3f904-cc5a-4d47-aa25-8
 ---------------------------------------
 
 Remove all comments in any file with a click of a button.
+Powerful and precise.
 
 See the [changelog](CHANGELOG.md) for changes and roadmap.
 

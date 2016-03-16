@@ -3,7 +3,7 @@
     <Metadata>
         <Identity Id="d7c3f904-cc5a-4d47-aa25-81fb7c36df89" Version="1.0" Language="en-US" Publisher="Mads Kristensen" />
         <DisplayName>Comment Remover</DisplayName>
-        <Description xml:space="preserve">Remove all comments in any file with a click of a button</Description>
+        <Description xml:space="preserve">Remove all comments in any file with a click of a button. Powerful and precise.</Description>
         <MoreInfo>https://github.com/madskristensen/CommentRemover</MoreInfo>
         <License>Resources\LICENSE</License>
         <ReleaseNotes>https://github.com/madskristensen/CommentRemover/blob/master/CHANGELOG.md</ReleaseNotes>
