@@ -17,3 +17,4 @@ on the official Visual Studio extension gallery.
 
 - [x] Initial release
 - [x] Remove all comments in file
+- [x] Correct handling of multi-line comments

@@ -62,7 +62,6 @@ public class Class1
     void Hat()
     {
         //single-line comment 
-
         for (int i = 0; i < 10; i++)
         {
             System.Diagnostics.Debug.Write(i); // same-line comment
@@ -75,17 +74,14 @@ After:
 ```c#
 public class Class1
 {
-    
     void Hat()
     {
-        
-
         for (int i = 0; i < 10; i++)
         {
-            System.Diagnostics.Debug.Write(i); 
+            System.Diagnostics.Debug.Write(i);   
         }
     }
-}
+}   
 ```
 
 ## Contribute
