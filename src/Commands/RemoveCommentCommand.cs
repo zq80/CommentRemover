@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.Shell;
@@ -50,7 +51,9 @@ namespace CommentRemover
             try
             {
                 VSPackage.DTE.UndoContext.Open("Remove comments");
+
                 DeleteFromBuffer(view, mappingSpans);
+                AddTelemetry(mappingSpans);
             }
             catch (Exception ex)
             {
@@ -60,6 +63,19 @@ namespace CommentRemover
             {
                 VSPackage.DTE.UndoContext.Close();
             }
+        }
+
+        private static void AddTelemetry(IEnumerable<IMappingSpan> mappingSpans)
+        {
+            var fileName = VSPackage.DTE.ActiveDocument?.FullName;
+            var ext = "<n/a>";
+
+            if (!string.IsNullOrEmpty(fileName))
+                ext = Path.GetExtension(fileName).ToLowerInvariant();
+
+            var props = new Dictionary<string, string> { { "extension", ext } };
+            var metrics = new Dictionary<string, double> { { "count", mappingSpans.Count() } };
+            Telemetry.TrackEvent("Comments removed", props, metrics);
         }
 
         private static void DeleteFromBuffer(IWpfTextView view, IEnumerable<IMappingSpan> mappingSpans)
