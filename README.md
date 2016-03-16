@@ -14,14 +14,12 @@ See the [changelog](CHANGELOG.md) for changes and roadmap.
 
 ## Features
 
-- Remove all comments
+- Remove all comments in a document
 - Remove all XML Doc comments
 - Remove all except XML Doc comments
 - Remove #regions
 
-## Remove comments
-Open any file and select the _Remove Comments_ button
-in the top level menu or hit **Ctrl+K, Ctrl+Q**.
+Find the commands in the **Edit** top level menu.
 
 ![Top level menu](art/top-menu.png)
 
