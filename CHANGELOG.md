@@ -8,9 +8,6 @@
   - [x] ASPX files
   - [ ] XAML filesS
   - ...and others
-- [x] Remove task comments
-- [x] Remove all except task comments
-- [x] Separated commands into groups
 
 Features that have a checkmark are complete and available for
 download in the
@@ -20,6 +17,15 @@ download in the
 
 These are the changes to each version that has been released
 on the official Visual Studio extension gallery.
+
+## 1.2
+
+**2016-03-17**
+
+- [x] Remove task comments
+- [x] Remove all except task comments
+- [x] Separated commands into groups
+- [x] Fixes issue with XML doc commments
 
 ## 1.1
 
