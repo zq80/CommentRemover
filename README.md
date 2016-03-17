@@ -34,7 +34,7 @@ been removed
 ### JSON
 
 **Before**:
-```json
+```javascript
 {
 	// Single-line comment
 	"foo": {
@@ -49,7 +49,7 @@ been removed
 ```
 
 **After**:
-```json
+```javascript
 {
 	"foo": {
 		"prop": 12
