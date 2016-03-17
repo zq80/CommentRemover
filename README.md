@@ -14,14 +14,14 @@ See the [changelog](CHANGELOG.md) for changes and roadmap.
 
 ## Features
 
-- Remove all comments in a document
-- Remove all XML Doc comments
+1. Remove all comments in a document
+1. Remove all XML Doc comments
   - _Example_ `/// <summary>`
-- Remove all except XML Doc comments
-- Remove all task comments
-    - _Example_ `// TODO: fix this`
-- Remove all except task comments
-- Remove #regions
+1. Remove all except XML Doc comments
+1. Remove all task comments
+  - _Example_ `// TODO: fix this`
+1. Remove all except task comments
+1. Remove #regions
 
 Find the commands in the **Edit** top level menu.
 
