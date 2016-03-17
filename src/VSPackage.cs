@@ -25,6 +25,8 @@ namespace CommentRemover
             RemoveRegionsCommand.Initialize(this);
             RemoveXmlDocComments.Initialize(this);
             RemoveAllExceptXmlDocComments.Initialize(this);
+            RemoveTasksCommand.Initialize(this);
+            RemoveAllExceptTaskComments.Initialize(this);
 
             base.Initialize();
         }

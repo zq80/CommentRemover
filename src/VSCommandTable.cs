@@ -18,10 +18,15 @@ namespace CommentRemover
     internal sealed partial class PackageIds
     {
         public const int MyMenu = 0x1000;
-        public const int MyMenuGroup = 0x1020;
+        public const int CommentsGroup = 0x1020;
+        public const int XmlDocGroup = 0x1030;
+        public const int RegionGroup = 0x1040;
+        public const int TaskGroup = 0x1050;
         public const int RemoveAllComments = 0x0100;
         public const int RemoveRegions = 0x0200;
         public const int RemoveXmlDocComments = 0x0300;
         public const int RemoveAllExceptXmlDocComments = 0x0400;
+        public const int RemoveTaskComments = 0x0500;
+        public const int RemoveAllExceptTaskComments = 0x0600;
     }
 }

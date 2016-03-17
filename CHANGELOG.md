@@ -8,6 +8,9 @@
   - [x] ASPX files
   - [ ] XAML filesS
   - ...and others
+- [x] Remove task comments
+- [x] Remove all except task comments
+- [x] Separated commands into groups
 
 Features that have a checkmark are complete and available for
 download in the
