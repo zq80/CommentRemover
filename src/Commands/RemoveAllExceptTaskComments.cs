@@ -67,13 +67,12 @@ namespace CommentRemover
 
                     foreach (var line in lines)
                     {
-                        bool isTaskComment = RemoveTasksCommand.ContainsTaskComment(line);
-
-                        if (isTaskComment)
+                        if (RemoveTasksCommand.ContainsTaskComment(line))
                         {
                             skip = true;
                         }
-                        else {
+                        else
+                        {
                             if (!affectedLines.Contains(line.LineNumber))
                                 affectedLines.Add(line.LineNumber);
                         }

@@ -71,6 +71,23 @@ namespace CommentRemover
                    || Regex.IsMatch(text, @"<!--(\s+)?-->"));
         }
 
+        protected static bool IsXmlDocComment(ITextSnapshotLine line)
+        {
+            string text = line.GetText().Trim();
+            var contentType = line.Snapshot.TextBuffer.ContentType;
+
+            if (contentType.IsOfType("CSharp") && text.StartsWith("///"))
+                return true;
+
+            if (contentType.IsOfType("FSharp") && text.StartsWith("///"))
+                return true;
+
+            if (contentType.IsOfType("Basic") && text.StartsWith("'''"))
+                return true;
+
+            return false;
+        }
+
         protected static void AddTelemetry(string eventName)
         {
             var fileName = VSPackage.DTE.ActiveDocument?.FullName;

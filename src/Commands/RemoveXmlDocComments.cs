@@ -61,7 +61,7 @@ namespace CommentRemover
 
             using (var edit = view.TextBuffer.CreateEdit())
             {
-                foreach (var  lineNumber in affectedLines)
+                foreach (var lineNumber in affectedLines)
                 {
                     var line = view.TextBuffer.CurrentSnapshot.GetLineFromLineNumber(lineNumber);
                     edit.Delete(line.Start, line.LengthIncludingLineBreak);

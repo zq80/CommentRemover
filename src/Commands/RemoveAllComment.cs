@@ -67,6 +67,11 @@ namespace CommentRemover
 
                     foreach (var line in lines)
                     {
+                        if (IsXmlDocComment(line))
+                        {
+                            edit.Replace(line.Start, line.Length, string.Empty.PadLeft(line.Length));
+                        }
+
                         if (!affectedLines.Contains(line.LineNumber))
                             affectedLines.Add(line.LineNumber);
                     }

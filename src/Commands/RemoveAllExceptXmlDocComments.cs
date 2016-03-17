@@ -67,13 +67,12 @@ namespace CommentRemover
 
                     foreach (var line in lines)
                     {
-                        bool isXmlDocComment = IsXmlDocComment(view.TextBuffer, line);
-
-                        if (isXmlDocComment)
+                        if (IsXmlDocComment(line))
                         {
                             skip = true;
                         }
-                        else {
+                        else
+                        {
                             if (!affectedLines.Contains(line.LineNumber))
                                 affectedLines.Add(line.LineNumber);
                         }
@@ -90,22 +89,6 @@ namespace CommentRemover
 
                 edit.Apply();
             }
-        }
-
-        private static bool IsXmlDocComment(ITextBuffer buffer, ITextSnapshotLine line)
-        {
-            string text = line.GetText().Trim();
-
-            if (buffer.ContentType.IsOfType("CSharp") && text.StartsWith("///"))
-                return true;
-
-            if (buffer.ContentType.IsOfType("FSharp") && text.StartsWith("///"))
-                return true;
-
-            if (buffer.ContentType.IsOfType("Basic") && text.StartsWith("'''"))
-                return true;
-
-            return false;
         }
 
         private static void RemoveAffectedEmptyLines(IWpfTextView view, IList<int> affectedLines)
