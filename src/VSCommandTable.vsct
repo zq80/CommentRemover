@@ -100,9 +100,22 @@
 
   <VisibilityConstraints>
     <VisibilityItem guid="guidPackageCmdSet" id="RemoveAllComments" context="GUID_TextEditorFactory" />
-    <VisibilityItem guid="guidPackageCmdSet" id="RemoveRegions" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidPackageCmdSet" id="RemoveAllComments" context="guidXmlUiCmds" />
+
     <VisibilityItem guid="guidPackageCmdSet" id="RemoveXmlDocComments" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidPackageCmdSet" id="RemoveXmlDocComments" context="guidXmlUiCmds" />
+
     <VisibilityItem guid="guidPackageCmdSet" id="RemoveAllExceptXmlDocComments" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidPackageCmdSet" id="RemoveAllExceptXmlDocComments" context="guidXmlUiCmds" />
+
+    <VisibilityItem guid="guidPackageCmdSet" id="RemoveTaskComments" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidPackageCmdSet" id="RemoveTaskComments" context="guidXmlUiCmds" />
+
+    <VisibilityItem guid="guidPackageCmdSet" id="RemoveAllExceptTaskComments" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidPackageCmdSet" id="RemoveAllExceptTaskComments" context="guidXmlUiCmds" />
+
+    <VisibilityItem guid="guidPackageCmdSet" id="RemoveRegions" context="GUID_TextEditorFactory" />
+    <VisibilityItem guid="guidPackageCmdSet" id="RemoveRegions" context="guidXmlUiCmds" />
   </VisibilityConstraints>
 
   <KeyBindings>
@@ -112,6 +125,9 @@
   <Symbols>
     <!-- This is the package guid. -->
     <GuidSymbol name="guidPackage" value="{34f42dd5-2285-4902-bdfa-6d721e867b57}" />
+
+    <!-- XML editor guid -->
+    <GuidSymbol name="guidXmlUiCmds" value="{fb87333b-16c8-400e-bc8f-f6b890410582}"/>
 
     <!-- This is the guid used to group the menu commands together -->
     <GuidSymbol name="guidPackageCmdSet" value="{d7952971-879b-431d-b743-70ad7e99e846}">

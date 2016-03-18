@@ -8,8 +8,10 @@ namespace CommentRemover
     internal sealed partial class PackageGuids
     {
         public const string guidPackageString = "34f42dd5-2285-4902-bdfa-6d721e867b57";
+        public const string guidXmlUiCmdsString = "fb87333b-16c8-400e-bc8f-f6b890410582";
         public const string guidPackageCmdSetString = "d7952971-879b-431d-b743-70ad7e99e846";
         public static Guid guidPackage = new Guid(guidPackageString);
+        public static Guid guidXmlUiCmds = new Guid(guidXmlUiCmdsString);
         public static Guid guidPackageCmdSet = new Guid(guidPackageCmdSetString);
     }
     /// <summary>
