@@ -6,11 +6,11 @@ using Microsoft.VisualStudio.Shell;
 
 namespace CommentRemover
 {
-    [PackageRegistration(UseManagedResourcesOnly = true)]
+    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PackageGuids.guidPackageString)]
-    public sealed class VSPackage : Package
+    public sealed class CommentRemoverPackage : Package
     {
         public static DTE2 DTE { get; private set; }
 
@@ -19,7 +19,6 @@ namespace CommentRemover
             DTE = (DTE2)GetService(typeof(DTE));
 
             Logger.Initialize(this, Vsix.Name);
-            Telemetry.Initialize(this, Vsix.Version, "4f961700-5d74-4a99-b346-571e5c82cb9b");
 
             RemoveAllCommentsCommand.Initialize(this);
             RemoveRegionsCommand.Initialize(this);

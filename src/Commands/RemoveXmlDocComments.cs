@@ -28,7 +28,7 @@ namespace CommentRemover
 
             try
             {
-                VSPackage.DTE.UndoContext.Open(button.Text);
+                CommentRemoverPackage.DTE.UndoContext.Open(button.Text);
 
                 RemoveCommentsFromBuffer(view, mappingSpans);
                 AddTelemetry("XMLDoc removed");
@@ -39,7 +39,7 @@ namespace CommentRemover
             }
             finally
             {
-                VSPackage.DTE.UndoContext.Close();
+                CommentRemoverPackage.DTE.UndoContext.Close();
             }
         }
 

@@ -27,7 +27,7 @@ namespace CommentRemover
 
             try
             {
-                VSPackage.DTE.UndoContext.Open(button.Text);
+                CommentRemoverPackage.DTE.UndoContext.Open(button.Text);
 
                 RemoveCommmentsFromBuffer(view, mappingSpans);
                 AddTelemetry("Tasks removed");
@@ -38,7 +38,7 @@ namespace CommentRemover
             }
             finally
             {
-                VSPackage.DTE.UndoContext.Close();
+                CommentRemoverPackage.DTE.UndoContext.Close();
             }
         }
 
