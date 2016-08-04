@@ -4,6 +4,8 @@ using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using EnvDTE;
+using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -19,7 +21,7 @@ namespace CommentRemover
         {
             _package = package;
 
-            OleMenuCommandService commandService = ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            var commandService = (OleMenuCommandService)ServiceProvider.GetService(typeof(IMenuCommandService));
             if (commandService != null)
             {
                 var menuCommandID = new CommandID(commandSet, commandId);
@@ -27,6 +29,8 @@ namespace CommentRemover
                 commandService.AddCommand(menuItem);
             }
         }
+
+        protected static DTE2 DTE { get; } = (DTE2)Package.GetGlobalService(typeof(DTE));
 
         public static T Instance { get; protected set; }
 
@@ -86,15 +90,6 @@ namespace CommentRemover
                 return true;
 
             return false;
-        }
-
-        protected static void AddTelemetry(string eventName)
-        {
-            var fileName = CommentRemoverPackage.DTE.ActiveDocument?.FullName;
-            var ext = "<n/a>";
-
-            if (!string.IsNullOrEmpty(fileName))
-                ext = Path.GetExtension(fileName).ToLowerInvariant();
         }
     }
 }

@@ -29,10 +29,9 @@ namespace CommentRemover
 
             try
             {
-                CommentRemoverPackage.DTE.UndoContext.Open(button.Text);
+                DTE.UndoContext.Open(button.Text);
 
                 DeleteFromBuffer(view, mappingSpans);
-                AddTelemetry("Comments not task removed");
             }
             catch (Exception ex)
             {
@@ -40,7 +39,7 @@ namespace CommentRemover
             }
             finally
             {
-                CommentRemoverPackage.DTE.UndoContext.Close();
+                DTE.UndoContext.Close();
             }
         }
 

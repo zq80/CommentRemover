@@ -30,10 +30,9 @@ namespace CommentRemover
 
             try
             {
-                CommentRemoverPackage.DTE.UndoContext.Open(button.Text);
+                DTE.UndoContext.Open(button.Text);
 
                 DeleteFromBuffer(view, mappingSpans);
-                AddTelemetry("Comments removed");
             }
             catch (Exception ex)
             {
@@ -41,7 +40,7 @@ namespace CommentRemover
             }
             finally
             {
-                CommentRemoverPackage.DTE.UndoContext.Close();
+                DTE.UndoContext.Close();
             }
         }
 
