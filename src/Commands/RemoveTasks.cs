@@ -11,13 +11,9 @@ namespace CommentRemover
     {
         private static readonly string[] _tasks = { "todo", "hack", "undone", "unresolvedmergeconflict" };
 
-        private RemoveTasksCommand(Package package)
-        : base(package, PackageGuids.guidPackageCmdSet, PackageIds.RemoveTaskComments)
-        { }
-
-        public static void Initialize(Package package)
+        protected override void SetupCommands()
         {
-            Instance = new RemoveTasksCommand(package);
+            RegisterCommand(PackageGuids.guidPackageCmdSet, PackageIds.RemoveTaskComments);
         }
 
         protected override void Execute(OleMenuCommand button)

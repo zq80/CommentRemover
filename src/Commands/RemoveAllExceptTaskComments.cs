@@ -10,13 +10,9 @@ namespace CommentRemover
 {
     internal sealed class RemoveAllExceptTaskComments : BaseCommand<RemoveAllExceptTaskComments>
     {
-        private RemoveAllExceptTaskComments(Package package)
-        : base(package, PackageGuids.guidPackageCmdSet, PackageIds.RemoveAllExceptTaskComments)
-        { }
-
-        public static void Initialize(Package package)
+        protected override void SetupCommands()
         {
-            Instance = new RemoveAllExceptTaskComments(package);
+            RegisterCommand(PackageGuids.guidPackageCmdSet, PackageIds.RemoveAllExceptTaskComments);
         }
 
         protected override void Execute(OleMenuCommand button)

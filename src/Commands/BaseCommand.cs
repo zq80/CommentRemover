@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using EnvDTE;
@@ -13,31 +12,33 @@ using Microsoft.VisualStudio.Text.Tagging;
 
 namespace CommentRemover
 {
-    internal abstract class BaseCommand<T>
+    internal abstract class BaseCommand<T> where T : BaseCommand<T>, new()
     {
-        private readonly Package _package;
-
-        protected BaseCommand(Package package, Guid commandSet, int commandId)
+        public static async System.Threading.Tasks.Task InitializeAsync(AsyncPackage package)
         {
-            _package = package;
-
-            var commandService = (OleMenuCommandService)ServiceProvider.GetService(typeof(IMenuCommandService));
-            if (commandService != null)
+            Instance = new T
             {
-                var menuCommandID = new CommandID(commandSet, commandId);
-                var menuItem = new OleMenuCommand(Callback, menuCommandID);
-                commandService.AddCommand(menuItem);
-            }
+                DTE = await package.GetServiceAsync(typeof(DTE)) as DTE2,
+                CommandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService
+            };
+
+            Instance.SetupCommands();
         }
 
-        protected static DTE2 DTE { get; } = (DTE2)Package.GetGlobalService(typeof(DTE));
+        protected abstract void SetupCommands();
+
+        protected void RegisterCommand(Guid commandGuid, int commandId)
+        {
+            var id = new CommandID(commandGuid, commandId);
+            var command = new OleMenuCommand(Callback, id);
+            CommandService.AddCommand(command);
+        }
+
+        protected DTE2 DTE { get; private set; }
+
+        private OleMenuCommandService CommandService { get; set; }
 
         public static T Instance { get; protected set; }
-
-        private IServiceProvider ServiceProvider
-        {
-            get { return _package; }
-        }
 
         private void Callback(object sender, EventArgs e)
         {

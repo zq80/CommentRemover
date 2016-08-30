@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 
 namespace CommentRemover
 {
     internal sealed class RemoveRegionsCommand : BaseCommand<RemoveRegionsCommand>
     {
-        private RemoveRegionsCommand(Package package)
-        : base(package, PackageGuids.guidPackageCmdSet, PackageIds.RemoveRegions)
-        { }
-
-        public static void Initialize(Package package)
+        protected override void SetupCommands()
         {
-            Instance = new RemoveRegionsCommand(package);
+            RegisterCommand(PackageGuids.guidPackageCmdSet, PackageIds.RemoveRegions);
         }
 
         protected override void Execute(OleMenuCommand button)

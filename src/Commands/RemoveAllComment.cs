@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.Shell;
@@ -11,13 +10,9 @@ namespace CommentRemover
 {
     internal sealed class RemoveAllCommentsCommand : BaseCommand<RemoveAllCommentsCommand>
     {
-        public RemoveAllCommentsCommand(Package package)
-            : base(package, PackageGuids.guidPackageCmdSet, PackageIds.RemoveAllComments)
-        { }
-
-        public static void Initialize(Package package)
+        protected override void SetupCommands()
         {
-            Instance = new RemoveAllCommentsCommand(package);
+            RegisterCommand(PackageGuids.guidPackageCmdSet, PackageIds.RemoveAllComments);
         }
 
         protected override void Execute(OleMenuCommand button)

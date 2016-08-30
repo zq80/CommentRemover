@@ -10,13 +10,9 @@ namespace CommentRemover
 {
     internal sealed class RemoveAllExceptXmlDocComments : BaseCommand<RemoveAllExceptXmlDocComments>
     {
-        private RemoveAllExceptXmlDocComments(Package package)
-        : base(package, PackageGuids.guidPackageCmdSet, PackageIds.RemoveAllExceptXmlDocComments)
-        { }
-
-        public static void Initialize(Package package)
+        protected override void SetupCommands()
         {
-            Instance = new RemoveAllExceptXmlDocComments(package);
+            RegisterCommand(PackageGuids.guidPackageCmdSet, PackageIds.RemoveAllExceptXmlDocComments);
         }
 
         protected override void Execute(OleMenuCommand button)

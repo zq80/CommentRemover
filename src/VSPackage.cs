@@ -6,7 +6,7 @@ using task = System.Threading.Tasks.Task;
 
 namespace CommentRemover
 {
-    [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
+    [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", Vsix.Version, IconResourceID = 400)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PackageGuids.guidPackageString)]
@@ -16,14 +16,12 @@ namespace CommentRemover
         {
             await Logger.InitializeAsync(this, Vsix.Name);
 
-            await JoinableTaskFactory.SwitchToMainThreadAsync();
-
-            RemoveAllCommentsCommand.Initialize(this);
-            RemoveRegionsCommand.Initialize(this);
-            RemoveXmlDocComments.Initialize(this);
-            RemoveAllExceptXmlDocComments.Initialize(this);
-            RemoveTasksCommand.Initialize(this);
-            RemoveAllExceptTaskComments.Initialize(this);
+            await RemoveAllCommentsCommand.InitializeAsync(this);
+            await RemoveRegionsCommand.InitializeAsync(this);
+            await RemoveXmlDocComments.InitializeAsync(this);
+            await RemoveAllExceptXmlDocComments.InitializeAsync(this);
+            await RemoveTasksCommand.InitializeAsync(this);
+            await RemoveAllExceptTaskComments.InitializeAsync(this);
         }
     }
 }
