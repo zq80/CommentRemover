@@ -31,7 +31,7 @@ namespace CommentRemover
             }
             catch (Exception ex)
             {
-                Logger.Log(ex);
+                System.Diagnostics.Debug.Write(ex);
             }
             finally
             {

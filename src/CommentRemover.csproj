@@ -60,7 +60,6 @@
     <Compile Include="Commands\RemoveTasks.cs" />
     <Compile Include="Commands\RemoveXmlDocComments.cs" />
     <Compile Include="Commands\RemoveRegions.cs" />
-    <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\ProjectHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\RemoveAllComment.cs" />
