@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using EnvDTE;
 using EnvDTE80;
+using Microsoft;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Editor;
@@ -25,10 +26,14 @@ namespace CommentRemover
             try
             {
                 if (!parent.IsKind(ProjectKinds.vsProjectKindSolutionFolder) && parent.Collection == null)  // Unloaded
+                {
                     return Enumerable.Empty<Project>();
+                }
 
                 if (!string.IsNullOrEmpty(parent.FullName))
+                {
                     return new[] { parent };
+                }
             }
             catch (COMException)
             {
@@ -43,9 +48,13 @@ namespace CommentRemover
 
         public static IWpfTextView GetCurentTextView()
         {
-            var componentModel = GetComponentModel();
-            if (componentModel == null) return null;
-            var editorAdapter = componentModel.GetService<IVsEditorAdaptersFactoryService>();
+            IComponentModel componentModel = GetComponentModel();
+            if (componentModel == null)
+            {
+                return null;
+            }
+
+            IVsEditorAdaptersFactoryService editorAdapter = componentModel.GetService<IVsEditorAdaptersFactoryService>();
 
             return editorAdapter.GetWpfTextView(GetCurrentNativeTextView());
         }
@@ -53,9 +62,9 @@ namespace CommentRemover
         public static IVsTextView GetCurrentNativeTextView()
         {
             var textManager = (IVsTextManager)ServiceProvider.GlobalProvider.GetService(typeof(SVsTextManager));
+            Assumes.Present(textManager);
 
-            IVsTextView activeView = null;
-            ErrorHandler.ThrowOnFailure(textManager.GetActiveView(1, null, out activeView));
+            ErrorHandler.ThrowOnFailure(textManager.GetActiveView(1, null, out IVsTextView activeView));
             return activeView;
         }
 

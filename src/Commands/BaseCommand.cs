@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using EnvDTE;
 using EnvDTE80;
+using Microsoft;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -22,6 +23,7 @@ namespace CommentRemover
                 CommandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService
             };
 
+            Assumes.Present(Instance.CommandService);
             Instance.SetupCommands();
         }
 
@@ -51,11 +53,13 @@ namespace CommentRemover
         protected static IEnumerable<IMappingSpan> GetClassificationSpans(IWpfTextView view, string classificationName)
         {
             if (view == null)
+            {
                 return Enumerable.Empty<IMappingSpan>();
+            }
 
-            var componentModel = ProjectHelpers.GetComponentModel();
-            var service = componentModel.GetService<IBufferTagAggregatorFactoryService>();
-            var classifier = service.CreateTagAggregator<IClassificationTag>(view.TextBuffer);
+            Microsoft.VisualStudio.ComponentModelHost.IComponentModel componentModel = ProjectHelpers.GetComponentModel();
+            IBufferTagAggregatorFactoryService service = componentModel.GetService<IBufferTagAggregatorFactoryService>();
+            ITagAggregator<IClassificationTag> classifier = service.CreateTagAggregator<IClassificationTag>(view.TextBuffer);
             var snapshot = new SnapshotSpan(view.TextBuffer.CurrentSnapshot, 0, view.TextBuffer.CurrentSnapshot.Length);
 
             return from s in classifier.GetTags(snapshot).Reverse()
@@ -78,17 +82,23 @@ namespace CommentRemover
 
         protected static bool IsXmlDocComment(ITextSnapshotLine line)
         {
-            string text = line.GetText().Trim();
-            var contentType = line.Snapshot.TextBuffer.ContentType;
+            var text = line.GetText().Trim();
+            Microsoft.VisualStudio.Utilities.IContentType contentType = line.Snapshot.TextBuffer.ContentType;
 
             if (contentType.IsOfType("CSharp") && text.StartsWith("///"))
+            {
                 return true;
+            }
 
             if (contentType.IsOfType("FSharp") && text.StartsWith("///"))
+            {
                 return true;
+            }
 
             if (contentType.IsOfType("Basic") && text.StartsWith("'''"))
+            {
                 return true;
+            }
 
             return false;
         }
