@@ -60,9 +60,20 @@ namespace CommentRemover
             Microsoft.VisualStudio.ComponentModelHost.IComponentModel componentModel = ProjectHelpers.GetComponentModel();
             IBufferTagAggregatorFactoryService service = componentModel.GetService<IBufferTagAggregatorFactoryService>();
             ITagAggregator<IClassificationTag> classifier = service.CreateTagAggregator<IClassificationTag>(view.TextBuffer);
-            var snapshot = new SnapshotSpan(view.TextBuffer.CurrentSnapshot, 0, view.TextBuffer.CurrentSnapshot.Length);
+            SnapshotSpan snapshot = new SnapshotSpan(view.TextBuffer.CurrentSnapshot, 0, view.TextBuffer.CurrentSnapshot.Length);
 
-            return from s in classifier.GetTags(snapshot).Reverse()
+            IEnumerable<IMappingSpan> mappingSpans =
+                from s in classifier.GetTags(snapshot).Reverse()
+                where s.Tag.ClassificationType.Classification.IndexOf(classificationName, StringComparison.OrdinalIgnoreCase) > -1
+                select s.Span;
+            if (mappingSpans.Any())
+            {
+                return mappingSpans;
+            }
+
+            IViewTagAggregatorFactoryService serviceViewTag = componentModel.GetService<IViewTagAggregatorFactoryService>();
+            ITagAggregator<IClassificationTag> classifierViewTag = serviceViewTag.CreateTagAggregator<IClassificationTag>(view);
+            return from s in classifierViewTag.GetTags(snapshot).Reverse()
                    where s.Tag.ClassificationType.Classification.IndexOf(classificationName, StringComparison.OrdinalIgnoreCase) > -1
                    select s.Span;
         }
