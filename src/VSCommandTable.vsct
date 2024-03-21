@@ -10,7 +10,7 @@
       <Menu guid="guidPackageCmdSet" id="MyMenu" priority="0xFF81" type="Menu">
         <Parent guid="guidStdEditor" id="IDG_VS_EDITOR_LANGUAGE_INFO" />
         <Strings>
-          <ButtonText>Comments</ButtonText>
+          <ButtonText>Comments_zq1</ButtonText>
         </Strings>
       </Menu>
     </Menus>
